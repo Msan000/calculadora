@@ -1,0 +1,17 @@
+{
+  "short_name": "Calc Pennywise",
+  "name": "Calculadora de Construcción Pennywise",
+  "description": "Calculadora de materiales de construcción que funciona sin conexión.",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#f1f5f9",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#4f46e5"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Calculadora de Construcción Pennywise",
+  "description": "Una aplicación para calcular de manera precisa la cantidad de materiales necesarios para proyectos de construcción en Argentina. Ideal para autoconstructores, profesionales y comercios.",
+  "requestFramePermissions": []
+}
