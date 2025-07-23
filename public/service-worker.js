@@ -5,7 +5,9 @@ const CACHE_NAME = 'calculadora-materiales-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  // Es importante tener en cuenta que los recursos de esm.sh también se cachearán dinámicamente.
+  '/manifest.json',
+  '/icon.svg',
+  // Los recursos de CDNs como esm.sh y tailwind se cachearán dinámicamente en el evento 'fetch'.
 ];
 
 // Evento 'install': se dispara cuando el Service Worker se instala.
@@ -14,7 +16,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('Cache abierto');
+        console.log('Cache abierto, añadiendo recursos estáticos.');
         return cache.addAll(urlsToCache);
       })
   );
@@ -37,8 +39,8 @@ self.addEventListener('fetch', (event) => {
         // Si no, hacemos la petición a la red
         return fetch(event.request).then(
           (networkResponse) => {
-            // Si la petición falla, no hacemos nada.
-            if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic' && !networkResponse.type.includes('cors')) {
+            // No cacheamos respuestas que no sean exitosas, o que no sean de tipo 'basic' o 'cors'.
+            if (!networkResponse || networkResponse.status !== 200 || (networkResponse.type !== 'basic' && networkResponse.type !== 'cors')) {
               return networkResponse;
             }
 
